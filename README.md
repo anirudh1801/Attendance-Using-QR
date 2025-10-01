@@ -1,7 +1,4 @@
-Perfect! Here's a polished **GitHub-ready README.md** for your **Attendance-Using-QR** project, with proper headings, badges, and sections you can directly paste into your repo:
-
-````markdown
-# Attendance Using QR
+# Attendance Management Using QR Code
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Angular Version](https://img.shields.io/badge/Angular-15+-blue)](https://angular.io/)
