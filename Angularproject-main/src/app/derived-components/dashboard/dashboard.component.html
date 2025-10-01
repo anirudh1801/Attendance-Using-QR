@@ -1,0 +1,92 @@
+<div class="dashboard-page">
+  <!-- Mark Attendance Button -->
+  <button class="dashboard-btn attendance-btn" (click)="navigateToAttendance()">
+    <span class="material-icons">qr_code_scanner</span>
+    Mark Attendance
+  </button>
+
+  <button class="dashboard-btn attendance-btn" (click)="deleteOrganisation()">
+    <span class="material-icons">delete</span>
+    Delete Organisation
+  </button>
+
+  <button class="dashboard-btn attendance-btn" (click)="logout()">
+    <span class="material-icons">logout</span>
+    Logout
+  </button>
+
+  <!-- Organisation Info Card -->
+  <div class="dashboard-card organisation-info-card">
+    <h3>
+      <span class="material-icons dashboard-icon">business</span>
+      Organisation ID
+    </h3>
+    <div class="organisation-id-display">
+      {{ organisationId || 'Not available' }}
+    </div>
+  </div>
+
+  <!-- Delete Employee Card -->
+  <div class="dashboard-card">
+    <h2>
+      <span class="material-icons dashboard-icon">person_remove</span>
+      Delete Employee
+    </h2>
+    <form (ngSubmit)="onDelete()" #deleteForm="ngForm" autocomplete="off">
+      <div class="form-group">
+        <label for="employeeId">Employee ID</label>
+        <input
+          type="text"
+          id="employeeId"
+          name="employeeId"
+          [(ngModel)]="employeeId"
+          required
+          class="form-control"
+          placeholder="Enter Employee ID"
+          autocomplete="off"
+        />
+      </div>
+      <button type="submit" class="dashboard-btn danger-btn">Delete</button>
+    </form>
+    <div *ngIf="deleteSuccess" class="dashboard-alert success">
+      <span class="material-icons">check_circle</span>
+      Employee deleted successfully.
+    </div>
+    <div *ngIf="deleteError" class="dashboard-alert error">
+      <span class="material-icons">error</span>
+      Error deleting employee: {{ deleteError }}
+    </div>
+  </div>
+
+  <!-- Employee Dashboard Card -->
+  <div class="dashboard-card">
+    <h2>
+      <span class="material-icons dashboard-icon">dashboard</span>
+      Employee Dashboard
+    </h2>
+    <div class="dashboard-table-wrapper">
+      <table *ngIf="employee.length > 0; else noEmployees">
+        <thead>
+          <tr>
+            <th>Employee Id</th>
+            <th>Email</th>
+            <th>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of employee">
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.email }}</td>
+            <td>{{ emp.log }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #noEmployees>
+        <div class="dashboard-alert info" style="text-align:center;">
+          <span class="material-icons">info</span>
+          No employees found.
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
